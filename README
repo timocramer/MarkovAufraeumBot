@@ -2,7 +2,7 @@ Telegram-Bot, der nervige Markov-Nachrichten filtert
 
 zum installieren:
 # useradd markov-aufraeum-bot
-# install markov-aufraeum-bot.py /usr/local/bin/
+# install markov-aufraeum-bot /usr/local/bin/
 # install -m 644 markov-aufraeum-bot.service /etc/systemd/system/
 # mkdir -p /etc/markov-aufraeum-bot/
 # echo 'yourBotToken' >/etc/markov-aufraeum-bot/token.txt
