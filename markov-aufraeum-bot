@@ -2,19 +2,19 @@
 
 # benötigt python-telegram-bot
 
-from telegram.ext import Updater, RegexHandler
+from telegram.ext import Updater, MessageHandler, Filters
 import time
 
 TOKEN_FILE = "/etc/markov-aufraeum-bot/token.txt"
 
-def deleteMarkovMessage(bot, update):
+def deleteMarkovMessage(update, context):
 	time.sleep(5)
-	bot.deleteMessage(chat_id=update.message.chat.id, message_id=update.message.message_id)
+	context.bot.deleteMessage(chat_id=update.message.chat.id, message_id=update.message.message_id)
 
 
 token = open(TOKEN_FILE, "r").read().rstrip()
-updater = Updater(token=token)
+updater = Updater(token=token, use_context=True)
 
-updater.dispatcher.add_handler(RegexHandler('/markov', deleteMarkovMessage))
+updater.dispatcher.add_handler(MessageHandler(Filters.regex('/markov'), deleteMarkovMessage))
 
 updater.start_polling()
